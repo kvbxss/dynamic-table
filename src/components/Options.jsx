@@ -1,14 +1,11 @@
 import React from 'react'
 import { styled } from 'styled-components';
-
-import Dropdown from './Dropdown'
 import Breadcrumb from './Breadcrumb';
 
 
 const Options = () => {
   return (
     <OptionsWrapper>
-    <Dropdown/>
     <Search>
         <Input type='text' placeholder="Search"/>
     </Search>
