@@ -67,7 +67,7 @@ function PokemonTable({ selectedPokemon, handleRowClick }) {
     <ScrollableWrapper>
     <TableWrapper>
       <Header>
-        <Row>
+        <HeaderRow>
       {table.getHeaderGroups().map(headerGroup => (
             <React.Fragment key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -82,7 +82,7 @@ function PokemonTable({ selectedPokemon, handleRowClick }) {
               ))}
             </React.Fragment>
             ))}
-            </Row>
+            </HeaderRow>
       </Header>
       
       <Body>
@@ -150,14 +150,22 @@ const Body = styled.tbody`
 font-size: 20px;
 display: table-row-group;
 `
+const HeaderRow = styled.tr`
+  display: table-row;
+  vertical-align: inherit;
+  height: 100px;
+`
 
 const Row = styled.tr`
   display: table-row;
   vertical-align: inherit;
   height: 100px;
 
-  &:nth-child(even) {
-    background-color: #f2f2f2;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    background-color: #72b6b2;
   }
 `
 const Cell = styled.td`
