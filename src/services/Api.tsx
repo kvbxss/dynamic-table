@@ -1,3 +1,4 @@
+
 export async function getPokemons() {
     try {
         const response = await fetch("https://pokemon-go1.p.rapidapi.com/pokemon_stats.json", {
