@@ -40,7 +40,6 @@ const columns = [
 
 
 function PokemonTable({ selectedPokemon, handleRowClick }) {
-
   
   const [data, setData] = useState<PokemonStats[]>([])
   const navigate = useNavigate();
