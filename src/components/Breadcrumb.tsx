@@ -20,6 +20,14 @@ const [breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
 
   const handleBreadcrumbClick = (index:number) => {
     const newPath = `/${breadcrumbs.slice(0, index + 1).join('/')}`;
+   
+    if (newPath === '/Pokemons') {
+      navigate(newPath);
+      window.location.reload();
+    } else if (newPath === '') {
+      navigate(newPath);
+      window.location.reload();
+    } else
     navigate(newPath);
   };
 
