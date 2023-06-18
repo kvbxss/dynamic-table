@@ -53,10 +53,6 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
   const [filteredData, setFilteredData] = useState<PokemonStats[]>([])
   const navigate = useNavigate();
 
-  useEffect(() => {
-    filterData(searchTerm);
-  }, [searchTerm]);
-
   const filterData = useCallback((searchTerm: string) => {
     if (selectedPokemon.trim() === '') {
       if (searchTerm.trim() === '') {
