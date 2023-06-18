@@ -57,19 +57,29 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
     filterData(searchTerm);
   }, [searchTerm]);
 
-  const filterData = (searchTerm: string) => {
-    if (searchTerm.trim() === '') {
-      setFilteredData(data);
+  const filterData = useCallback((searchTerm: string) => {
+    if (selectedPokemon.trim() === '') {
+      if (searchTerm.trim() === '') {
+        setFilteredData(data);
+      } else {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        const filtered = data.filter(
+          (pokemon) =>
+            pokemon.pokemon_name &&
+            pokemon.pokemon_name.toLowerCase().includes(lowerCaseSearchTerm)
+        );
+        setFilteredData(filtered);
+      }
     } else {
-      const lowerCaseSearchTerm = searchTerm.toLowerCase();
       const filtered = data.filter(
         (pokemon) =>
           pokemon.pokemon_name &&
-          pokemon.pokemon_name.toLowerCase().includes(lowerCaseSearchTerm)
+          pokemon.pokemon_name.toLowerCase() === selectedPokemon.toLowerCase()
       );
       setFilteredData(filtered);
     }
-  };
+  }, [data, selectedPokemon]);
+  
   
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +91,9 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
   }, []);
 
 
-
+  useEffect(() => {
+    filterData(searchTerm);
+  }, [searchTerm, filterData]);
  
 
   
@@ -91,10 +103,6 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
     getCoreRowModel: getCoreRowModel(),
   })
 
-
-  const handleSearch = (searchTerm: string) => {
-    filterData(searchTerm);
-  };
 
   
 
