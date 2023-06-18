@@ -48,6 +48,11 @@ const Wrapper = styled.section`
   @media (min-width: 768px) {
     height: calc(100vh - 215px);
   }
+
+  @media screen and (max-width: 768px) {
+    height: calc(100vh - 215px);
+  }
+  
 `;
 
 

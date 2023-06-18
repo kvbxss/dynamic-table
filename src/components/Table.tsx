@@ -185,6 +185,10 @@ const ScrollableWrapper = styled.div`
       background-color: #ccc;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    overflow-x: auto;
+  }
 `;
 
 const TableWrapper = styled.div`
