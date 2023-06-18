@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { ChangeEvent, FunctionComponent, useState } from 'react'
 import { styled } from 'styled-components';
 import Breadcrumb from './Breadcrumb';
 
@@ -10,13 +10,14 @@ const Options: FunctionComponent<OptionsProps> = ({handleSearch}) => {
   
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchTerm(value);
     handleSearch(value);
   };
 
- 
+
   
   return (
     <OptionsWrapper>
