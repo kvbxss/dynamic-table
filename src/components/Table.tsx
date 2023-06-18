@@ -1,51 +1,57 @@
-import React, { useState, useEffect, FunctionComponent, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  FunctionComponent,
+  useCallback,
+} from "react";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
   createColumnHelper,
-} from '@tanstack/react-table';
-import { useNavigate } from 'react-router-dom';
-import { styled } from 'styled-components';
-import { PokemonStats } from '../services/interfaces';
-import { getPokemons } from '../services/Api';
+} from "@tanstack/react-table";
+import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import { PokemonStats } from "../services/interfaces";
+import { getPokemons } from "../services/Api";
 
 const columnHelper = createColumnHelper<PokemonStats>();
 
 const columns = [
-  columnHelper.accessor('expander', {
+  columnHelper.accessor("expander", {
     header: () => null,
     cell: ({ row }) => {
       return row.getCanExpand() ? (
         <button
           {...{
             onClick: row.getToggleExpandedHandler(),
-            style: { cursor: 'pointer' },
+            style: { cursor: "pointer" },
           }}
         >
-          {row.getIsExpanded() ? '👇' : '👉'}
+          {row.getIsExpanded() ? "👇" : "👉"}
         </button>
       ) : (
-        'DoubleClick to expand'
-      )
-    }}),
-  columnHelper.accessor('pokemon_id', {
-    header: 'Pokemon ID',
+        "DoubleClick to expand"
+      );
+    },
   }),
-  columnHelper.accessor('pokemon_name', {
-    header: 'Pokemon Name',
+  columnHelper.accessor("pokemon_id", {
+    header: "Pokemon ID",
   }),
-  columnHelper.accessor('base_attack', {
-    header: 'Base Attack',
+  columnHelper.accessor("pokemon_name", {
+    header: "Pokemon Name",
   }),
-  columnHelper.accessor('base_defense', {
-    header: 'Base Defense',
+  columnHelper.accessor("base_attack", {
+    header: "Base Attack",
   }),
-  columnHelper.accessor('base_stamina', {
-    header: 'Base Stamina',
+  columnHelper.accessor("base_defense", {
+    header: "Base Defense",
   }),
-  columnHelper.accessor('form', {
-    header: 'Form',
+  columnHelper.accessor("base_stamina", {
+    header: "Base Stamina",
+  }),
+  columnHelper.accessor("form", {
+    header: "Form",
   }),
 ];
 
@@ -67,8 +73,8 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
 
   const filterData = useCallback(
     (searchTerm: string) => {
-      if (selectedPokemon.trim() === '') {
-        if (searchTerm.trim() === '') {
+      if (selectedPokemon.trim() === "") {
+        if (searchTerm.trim() === "") {
           setFilteredData(data);
         } else {
           const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -123,7 +129,12 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
               <React.Fragment key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <Head key={header.id}>
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </Head>
                 ))}
               </React.Fragment>
@@ -135,7 +146,9 @@ const PokemonTable: FunctionComponent<PokemonTableProps> = ({
           {table.getRowModel().rows.map((row) => (
             <React.Fragment key={row.id}>
               <Row
-                onClick={() => handleRowClick(navigate, row.original.pokemon_name)}
+                onClick={() =>
+                  handleRowClick(navigate, row.original.pokemon_name)
+                }
                 onDoubleClick={() => handleExpandRow(row.id)}
                 isExpanded={row.id === expandedRowId}
               >
@@ -193,7 +206,7 @@ const ScrollableWrapper = styled.div`
 
 const TableWrapper = styled.div`
   width: 100%;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
   align-items: center;
   justify-content: center;
   display: table;
@@ -220,7 +233,7 @@ const HeaderRow = styled.tr`
 const Row = styled.tr<{ isExpanded: boolean }>`
   display: table-row;
   vertical-align: inherit;
-  height: ${({ isExpanded }) => (isExpanded ? '200px' : '100px')};
+  height: ${({ isExpanded }) => (isExpanded ? "200px" : "100px")};
   transition: height 0.3s ease-in-out;
 
   &:hover {

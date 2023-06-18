@@ -1,14 +1,14 @@
 {
-    "compilerOptions": {
-        "jsx": "react",
-        "target": "es5",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "outDir": "dist",
-        "strict": true,
-        "esModuleInterop": true,
-        "allowImportingTsExtensions": true,
-        "noEmit": true
-    },
-    "include": ["src/components", "src/custom.d.ts", "custom.d.ts"]
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": ["src/components", "src/custom.d.ts", "custom.d.ts"]
 }
