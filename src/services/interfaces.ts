@@ -1,4 +1,5 @@
 export interface PokemonStats {
+    expander:    string;
     base_attack:  number;
     base_defense: number;
     base_stamina: number;
