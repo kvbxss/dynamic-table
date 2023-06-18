@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-const Breadcrumb = ({selectedPokemon}) => {
+interface BreadcrumbProps {
+  selectedPokemon: string
+}
+
+const Breadcrumb: FunctionComponent<BreadcrumbProps>  = ({selectedPokemon}) => {
 
 const navigate = useNavigate();
 const location = useLocation();
-  const [breadcrumbs, setBreadcrumbs] = useState([]);
+const [breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -14,7 +18,7 @@ const location = useLocation();
     setBreadcrumbs(pathnames);
   }, [location.pathname]);
 
-  const handleBreadcrumbClick = (index) => {
+  const handleBreadcrumbClick = (index:number) => {
     const newPath = `/${breadcrumbs.slice(0, index + 1).join('/')}`;
     navigate(newPath);
   };

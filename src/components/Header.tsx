@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
-const Header = () => {
+const Header:FunctionComponent = () => {
   return (
     <Head>
         <TitleWrapper>

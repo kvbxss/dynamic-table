@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-
 import heartIcon from '../assets/heart.svg'
 
-const Footer = () => {
+
+
+
+const Footer: FunctionComponent = () => {
   return (
     <Foot>
       <Text>
@@ -44,7 +46,7 @@ const Heart = styled.span`
 `
 
 const HeartIcon = styled.img`
-width: 1rem;
-height: 1rem;
-margin-top: 1rem;
-`
+  width: 1rem;
+  height: 1rem;
+  margin-top: 1rem;
+`;

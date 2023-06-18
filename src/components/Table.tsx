@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent, useCallback } from 'react';
 import { 
   useReactTable,
   getCoreRowModel,
@@ -8,7 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { PokemonStats } from '../services/interfaces';
-import { getPokemons } from '../services/Api.tsx';
+import { getPokemons } from '../services/Api';
 
 
 const columnHelper = createColumnHelper<PokemonStats>()
@@ -38,28 +38,63 @@ const columns = [
   })
 ]
 
+interface PokemonTableProps {
+  selectedPokemon: string;
+  searchTerm: string;
+  handleRowClick: (navigate: any, pokemonName: string) => void;
+}
 
-function PokemonTable({ selectedPokemon, handleRowClick }) {
+const PokemonTable: FunctionComponent<PokemonTableProps> = ({ 
+  selectedPokemon,
+  searchTerm,
+  handleRowClick }) => {
   
   const [data, setData] = useState<PokemonStats[]>([])
+  const [filteredData, setFilteredData] = useState<PokemonStats[]>([])
   const navigate = useNavigate();
 
+  useEffect(() => {
+    filterData(searchTerm);
+  }, [searchTerm]);
+
+  const filterData = (searchTerm: string) => {
+    if (searchTerm.trim() === '') {
+      setFilteredData(data);
+    } else {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      const filtered = data.filter(
+        (pokemon) =>
+          pokemon.pokemon_name &&
+          pokemon.pokemon_name.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+      setFilteredData(filtered);
+    }
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       const result = await getPokemons();
       setData(result);
+      setFilteredData(result);
     };
     fetchData();
   }, []);
 
+
+
  
 
+  
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
 
+
+  const handleSearch = (searchTerm: string) => {
+    filterData(searchTerm);
+  };
 
   
 

@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import { styled } from 'styled-components';
 import Breadcrumb from './Breadcrumb';
 
+interface OptionsProps {
+  handleSearch: (searchTerm: string) => void;
+}
 
-const Options = () => {
+const Options: FunctionComponent<OptionsProps> = ({handleSearch}) => {
+  
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+    handleSearch(value);
+  };
+
+ 
+  
   return (
     <OptionsWrapper>
     <Search>
-        <Input type='text' placeholder="Search"/>
+        <Input type='text' placeholder="Search by name" value={searchTerm} onChange={handleInputChange} />
     </Search>
-    <Breadcrumb />
+    <Breadcrumb selectedPokemon=''/>
     </OptionsWrapper>
   )
 }
