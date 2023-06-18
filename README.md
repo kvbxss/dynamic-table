@@ -1,6 +1,6 @@
 # Pokemon Stats Application
 
-React application that displays Pokemon statistics fetched from rapidapi. It allows you to search and filter Pokemon based on their names and view detailed information for each Pokemon.
+React Dynamic Table that displays Pokemon statistics fetched from rapidapi. It allows you to search and filter Pokemon based on their names and view detailed information for each Pokemon.
 
 ## Features
 
